@@ -76,7 +76,7 @@ justify-content: space-between;
 
 .weather-app-temperature {
     font-size: 80px;
-    font-weight: bold;
+    font-weight: 500;
 }
 
 .weather-app-icon {
