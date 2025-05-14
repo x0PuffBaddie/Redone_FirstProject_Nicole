@@ -12,15 +12,15 @@
 <body>
     <div class="weatherApp">
     <header>
-        <form class="searchForm">
-            <input type="search" placeholder="enter a city" required class="search-form-input" />
+        <form class="searchForm" id="search-form">
+            <input type="search" placeholder="enter a city" required id="search-form-input" class="search-form-input" />
             <input type="submit" value="search" class="search-form-button" />
         </form>
     </header>
 <main>
     <div class="weather-app-data"> 
         <div>
-    <h1 class="weather-app-city"> Manila </h1>
+    <h1 class="weather-app-city" id="city"> Manila </h1>
     <p class="weather-app-details">
         Tuesday 10:30, cloudy
         <br />
@@ -40,5 +40,6 @@
      <a href="https://nicoleapp-shecodes-redone-first-pro.netlify.app/" target="blank"> Netlify </a>
     </footer> 
     </div>
+    <script src="src/index.js"> </script>
 </body>
 </html>
