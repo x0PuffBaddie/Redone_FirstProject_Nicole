@@ -52,20 +52,39 @@ cityElement.innerHTML = searchInput.value;
 searchCity(searchInput.value);
 }
 
-function displayForecast() {
-  let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+function formatDay (timestamp) {
+  let date = new Data(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[date.getDay()];
+}
+
+function getForecast(city) {
+  let apiKey = "0f47325f67190a100b7be47t71b9a1ob";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
+function displayForecast(response) {
+  console.log(response.data);
+
   let forecastHTML = `<div class="weather-forecast">`;
 
-  days.forEach(function (day) {
-    forecastHTML += `
-      <div class="weather-forecast-day">
-        <div class="weather-forecast-date">${day}</div>
-        <div class="weather-forecast-icon">🌤</div>
-        <div class="weather-forecast-temperature">
-          <div class="weather-forecast-temperatures"><strong>15°</strong></div>
-          <div class="weather-forecast-temperatures">9°</div>
-        </div>
-      </div>`;
+  response.data.daily.forEach(function (day, index) {
+    if (index < 5) {
+      forecastHTML += `
+        <div class="weather-forecast-day">
+          <div class="weather-forecast-date">${formatDay(day.time)}</div>
+          <div class="weather-forecast-icon">
+         <img src="${day.condition.icon_url}" />
+            </div>
+            <div class="weather-forecast-temperatures">
+            <div class="weather-forecast-temperature"><strong>${Math.round(day.temperature.maximum)}°</strong></div>
+            <div class="weather-forecast-temperature">${Math.round(day.temperature.minimum)}°</div>
+          </div>
+        </div>`;
+    }
   });
 
   forecastHTML += `</div>`; 
@@ -74,9 +93,17 @@ function displayForecast() {
   forecastElement.innerHTML = forecastHTML;
 }
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[date.getDay()];
+}
+
+
+
 
 
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
-displayForecast();
+getForecast("Saigon");
