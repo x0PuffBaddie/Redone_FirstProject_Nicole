@@ -81,10 +81,10 @@ justify-content: space-between;
 }
 
 .weather-app-icon {
-    width: 80px;
-    height: 80px;
+    width: 50px;
     margin-top: 10px;
-    margin-right: 5px;
+    margin-right: 40px;
+    font-size: 60px;
 }
 
 
@@ -99,7 +99,7 @@ justify-content: space-between;
     display: flex;
     margin-top: 20px;
     justify-content: space-around;
-    
+
 
 }
 .weather-forecast-date {
