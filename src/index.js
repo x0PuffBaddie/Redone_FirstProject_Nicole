@@ -15,7 +15,11 @@ function refreshWeather(response) {
     windSpeedElement.innerHTML = `${response.data.wind.speed}km/h`;
     descriptionElement.innerHTML = response.data.condition.description;
     humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
-    temperatureElement.innerHTML = Math.round(temperature);
+    iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="icon">`;
+
+
+getForecast(response.data.city);
+
 }
 
 function formatDate(date) {
@@ -50,14 +54,6 @@ let cityElement = document.querySelector("#city");
 cityElement.innerHTML = searchInput.value;
 
 searchCity(searchInput.value);
-}
-
-
-function formatDay (timestamp) {
-  let date = new Data(timestamp * 1000);
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
-  return days[date.getDay()];
 }
 
 function getForecast(city) {
@@ -100,10 +96,6 @@ function formatDay(timestamp) {
 }
 
 
-
-
-
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
-getForecast("Saigon");
