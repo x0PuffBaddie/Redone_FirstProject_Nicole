@@ -9,6 +9,7 @@ function refreshWeather(response) {
     let date = new Date (response.data.time * 1000);
     let iconElement = document.querySelector("#icon");
     
+    temperatureElement.innerHTML = Math.round(temperature);
     iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="icon">`
     cityElement.innerHTML = response.data.city;
     timeElement.innerHTML = formatDate(date);
@@ -16,7 +17,6 @@ function refreshWeather(response) {
     descriptionElement.innerHTML = response.data.condition.description;
     humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
     iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="icon">`;
-
 
 getForecast(response.data.city);
 
@@ -99,3 +99,4 @@ function formatDay(timestamp) {
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
+searchCity("Saigon");
